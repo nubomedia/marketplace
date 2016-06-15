@@ -33,6 +33,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import javax.persistence.NoResultException;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -76,6 +77,21 @@ public class RestApplication {
         applicationManagement.delete(id);
         log.trace("Incoming request served by deleting Application: " + id);
     }
+
+    /**
+     * Deletes n Applications from the marketplace
+     *
+     * @param ids
+     */
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable("id") List<String> ids) throws NotFoundException {
+        log.trace("Incoming request for deleting Applications: " + ids);
+        for(String id: ids)
+            applicationManagement.delete(id);
+        log.trace("Incoming request served by deleting Applications: " + ids);
+    }
+
 
     /**
      * Returns an Application with the given ID from the marketplace
