@@ -321,7 +321,7 @@ restartProject () {
 #########################################
 
 prereq () {
-  $_ex 'apt-get update; apt-get -y install openjdk-7-jdk screen git rabbitmq-server'
+  $_ex 'apt-get update; apt-get -y install openjdk-7-jdk screen git'
   log_success_msg "Installed required software"
 }
 
