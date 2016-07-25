@@ -16,7 +16,7 @@ _DEFAULT_PROPERTIES_FILE="${_PROJECT_BASE}/etc/marketplace.properties"
 _PROJECT_PROPERTIES_FILE="${_PROJECT_PROPERTIES_FOLDER}/marketplace.properties"
 _PROJECT_LOG_FOLDER="/var/log/nubomedia"
 
-_DATABASE_NAME="nubomedia-marketplace"
+_DATABASE_NAME="nubomediamarketplace"
 
 #debian configuration
 _APT_KEY_SERVER="keyserver.ubuntu.com"
@@ -130,7 +130,7 @@ configureDatabase () {
 ###############
 
 installMySql () {
-    checkBinary mysql-server; _error=$(($_error + $?))
+    checkBinary mysql; _error=$(($_error + $?))
     if [ "0" != "$_error" ]; then
         log_warning_msg "MySQL is not yet installed. Start installation ..."
         $_ex 'apt-get -y install mysql-server'

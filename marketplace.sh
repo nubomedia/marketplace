@@ -4,10 +4,10 @@ source ./gradle.properties
 
 _version=${version}
 
-_project_base="/opt/nubomedia/marketplace"
-_process_name="marketplace"
+_project_base="/opt/nubomedia/nubomedia-marketplace"
+_process_name="nubomedia-marketplace"
 _screen_name="nubomedia"
-_config_file="/etc/nubomedia/nubomedia-marketplace.properties"
+_config_file="/etc/nubomedia/marketplace.properties"
 
 function checkBinary {
   if command -v $1 >/dev/null 2>&1; then
