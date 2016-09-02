@@ -139,4 +139,23 @@ public class RestApplication {
 
     }
 
+    /**
+     * Deletes all the Apps specified in the list of ids
+     *
+     * @param projectId
+     * @param ids
+     * @throws NotFoundException
+     */
+    @RequestMapping(
+            value = "/multipledelete",
+            method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE
+    )
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void multipleDelete(
+            @RequestHeader(value = "project-id") String projectId, @RequestBody @Valid List<String> ids)
+            throws NotFoundException {
+        for (String id : ids) applicationManagement.delete(id);
+    }
+
 }
