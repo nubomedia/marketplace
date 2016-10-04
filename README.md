@@ -1,10 +1,8 @@
-# NUBOMEDIA Marketplace
-
-This project is part of NUBOMEDIA project: [NUBOMEDIA][nubomedia.eu]
-
 [![][NUBOMEDIA Logo]][NUBOMEDIA]
 
-Copyright © 2016 [NUBOMEDIA]. Licensed under [LGPL v2.1 License].
+Copyright © 2016 [NUBOMEDIA]. Licensed under [Apache 2.0 License].
+
+# NUBOMEDIA Marketplace
 
 The NUBOMEDIA Marketplace provides an easy way for managing and downloading NUBOMEDIA applications from a central point.
 This allows users to share applications easily among the community that can be launched with a few clicks without making any adoptions.
@@ -119,7 +117,6 @@ installation and [Development Guide].
 Source code for other NUBOMEDIA projects can be found in the [GitHub NUBOMEDIA
 Group].
 
-
 # News
 
 Follow us on Twitter @[NUBOMEDIA Twitter].
@@ -130,14 +127,16 @@ Issues and bug reports should be posted to [GitHub Issues].
 
 # Licensing and distribution
 
-Software associated to NUBOMEDIA is provided as open source under GNU Library or
-"Lesser" General Public License, version 2.1 (LGPL-2.1). Please check the
-specific terms and conditions linked to this open source license at
-http://opensource.org/licenses/LGPL-2.1. Please note that software derived as a
-result of modifying the source code of NUBOMEDIA software in order to fix a bug
-or incorporate enhancements is considered a derivative work of the product.
-Software that merely uses or aggregates (i.e. links to) an otherwise unmodified
-version of existing software is not considered a derivative work.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed
+under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND, either express or implied. See the License for the
+specific language governing permissions and limitations under the License.
 
 # Contribution policy
 
