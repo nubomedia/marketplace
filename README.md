@@ -164,10 +164,10 @@ with the following guidelines
 
 The NUBOMEDIA community provides support through the [NUBOMEDIA Public Mailing List].
 
+[Apache 2.0 License]: https://www.apache.org/licenses/LICENSE-2.0.txt
 [Development Guide]: http://nubomedia.readthedocs.org/
 [GitHub Issues]: https://github.com/tub-nubomedia/marketplace/issues
 [GitHub NUBOMEDIA Group]: https://github.com/nubomedia
-[LGPL v2.1 License]: http://www.gnu.org/licenses/lgpl-2.1.html
 [NUBOMEDIA Logo]: http://www.nubomedia.eu/sites/default/files/nubomedia_logo-small.png
 [NUBOMEDIA Twitter]: https://twitter.com/nubomedia
 [NUBOMEDIA Public Mailing list]: https://groups.google.com/forum/#!forum/nubomedia-dev
