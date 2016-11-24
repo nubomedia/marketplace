@@ -21,21 +21,50 @@
 
 package org.nubomedia.marketplace.catalogue;
 
+import org.nubomedia.marketplace.catalogue.utils.IdGenerator;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.PrePersist;
+
 /**
- * Created by maa on 22.01.16.
+ * Created by maa on 08.10.15.
  */
-public enum Flavor {
-  SMALL("d1.small"),
-  MEDIUM("d1.medium"),
-  LARGE("d1.large");
+@Entity
+public class EnvironmentVariable {
+  @Id private String id;
+  private String name;
+  private String value;
 
-  private final String value;
-
-  Flavor(String value) {
+  public EnvironmentVariable(String name, String value) {
+    this.name = name;
     this.value = value;
+  }
+
+  public EnvironmentVariable() {}
+
+  @PrePersist
+  public void ensureId() {
+    id = IdGenerator.createUUID();
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   public String getValue() {
     return value;
+  }
+
+  public void setValue(String value) {
+    this.value = value;
   }
 }

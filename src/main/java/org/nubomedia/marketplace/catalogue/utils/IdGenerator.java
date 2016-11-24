@@ -30,15 +30,14 @@ import java.util.UUID;
  */
 public class IdGenerator {
 
-    private static SecureRandom random = new SecureRandom();
+  private static SecureRandom random = new SecureRandom();
 
-    public static String createId() {
-        return new BigInteger(32, random).toString();
-    }
+  public static String createId() {
+    return new BigInteger(32, random).toString();
+  }
 
-    public static String createUUID() {
-        UUID uuid = UUID.randomUUID();
-        return uuid.toString();
-    }
+  public static String createUUID() {
+    UUID uuid = UUID.randomUUID();
+    return uuid.toString();
+  }
 }
-

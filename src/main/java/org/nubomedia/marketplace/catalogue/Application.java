@@ -27,6 +27,7 @@ import org.nubomedia.marketplace.catalogue.utils.IdGenerator;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -36,293 +37,343 @@ import java.util.Set;
 @Entity
 public class Application {
 
-    @Id
-    private String id;
+  @Id private String id;
 
-    @JsonIgnore
-    @Version
-    private int hb_version = 0;
+  @JsonIgnore @Version private int hb_version = 0;
 
-    @NotNull
-    private String description;
+  @NotNull private String description;
 
-    @NotNull
-    private String provider;
+  @NotNull private String provider;
 
-    @ElementCollection
-    private Map<String, String> requirements;
+  @ElementCollection private Map<String, String> requirements;
 
-    @NotNull
-    private String gitURL;
+  @NotNull private String gitURL;
 
-    @NotNull
-    private String name;
+  @NotNull private String name;
 
-    @NotNull
-    private boolean shared;
+  @NotNull private boolean shared;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<NubomediaPort> ports;
+  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  private Set<Port> ports;
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private Flavor flavor;
+  @NotNull
+  @Enumerated(EnumType.STRING)
+  private Flavor flavor;
 
-    @Min(1)
-    private int replicasNumber;
+  @Min(1)
+  private int replicasNumber;
 
-    private String secretName;
+  private String secretName;
 
-    @Enumerated(EnumType.STRING)
-    private QoS qualityOfService;
+  @Enumerated(EnumType.STRING)
+  private QoS qualityOfService;
 
-    private boolean cloudRepository;
+  private boolean cloudRepository;
 
-    private boolean cdnConnector;
+  private boolean cdnConnector;
 
-    private boolean turnServerActivate;
+  private boolean turnServerActivate;
 
-    private String turnServerUrl;
+  private String turnServerUrl;
 
-    private String turnServerUsername;
+  private String turnServerUsername;
 
-    private String turnServerPassword;
+  private String turnServerPassword;
 
-    private boolean stunServerActivate;
+  private boolean stunServerActivate;
 
-    private String stunServerIp;
+  private String stunServerIp;
 
-    private String stunServerPort;
+  private String stunServerPort;
 
-    private int scaleInOut;
+  private int numberOfInstances;
 
-    private double scale_out_threshold;
+  private int scaleOutLimit;
 
-    @PrePersist
-    public void ensureId(){
-        id = IdGenerator.createUUID();
-    }
+  private double scaleOutThreshold;
 
-    public String getId() {
-        return id;
-    }
+  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  private List<SupportingService> services;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+  @PrePersist
+  public void ensureId() {
+    id = IdGenerator.createUUID();
+  }
 
-    public int getHb_version() {
-        return hb_version;
-    }
+  public String getId() {
+    return id;
+  }
 
-    public void setHb_version(int hb_version) {
-        this.hb_version = hb_version;
-    }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public int getHb_version() {
+    return hb_version;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public void setHb_version(int hb_version) {
+    this.hb_version = hb_version;
+  }
 
-    public String getProvider() {
-        return provider;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public void setProvider(String provider) {
-        this.provider = provider;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public Map<String, String> getRequirements() {
-        return requirements;
-    }
-
-    public void setRequirements(Map<String, String> requirements) {
-        this.requirements = requirements;
-    }
-
-    public boolean isShared() {
-        return shared;
-    }
-
-    public void setShared(boolean shared) {
-        this.shared = shared;
-    }
-
-    public String getGitURL() {
-        return gitURL;
-    }
-
-    public void setGitURL(String gitURL) {
-        this.gitURL = gitURL;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<NubomediaPort> getPorts() {
-        return ports;
-    }
-
-    public void setPorts(Set<NubomediaPort> ports) {
-        this.ports = ports;
-    }
-
-    public Flavor getFlavor() {
-        return flavor;
-    }
-
-    public void setFlavor(Flavor flavor) {
-        this.flavor = flavor;
-    }
-
-    public int getReplicasNumber() {
-        return replicasNumber;
-    }
-
-    public void setReplicasNumber(int replicasNumber) {
-        this.replicasNumber = replicasNumber;
-    }
-
-    public String getSecretName() {
-        return secretName;
-    }
-
-    public void setSecretName(String secretName) {
-        this.secretName = secretName;
-    }
-
-    public QoS getQualityOfService() {
-        return qualityOfService;
-    }
-
-    public void setQualityOfService(QoS qualityOfService) {
-        this.qualityOfService = qualityOfService;
-    }
-
-    public boolean isCloudRepository() {
-        return cloudRepository;
-    }
-
-    public void setCloudRepository(boolean cloudRepository) {
-        this.cloudRepository = cloudRepository;
-    }
-
-    public boolean isTurnServerActivate() {
-        return turnServerActivate;
-    }
-
-    public void setTurnServerActivate(boolean turnServerActivate) {
-        this.turnServerActivate = turnServerActivate;
-    }
-
-    public String getTurnServerUrl() {
-        return turnServerUrl;
-    }
-
-    public void setTurnServerUrl(String turnServerUrl) {
-        this.turnServerUrl = turnServerUrl;
-    }
-
-    public String getTurnServerUsername() {
-        return turnServerUsername;
-    }
-
-    public void setTurnServerUsername(String turnServerUsername) {
-        this.turnServerUsername = turnServerUsername;
-    }
-
-    public String getTurnServerPassword() {
-        return turnServerPassword;
-    }
-
-    public void setTurnServerPassword(String turnServerPassword) {
-        this.turnServerPassword = turnServerPassword;
-    }
-
-    public boolean isStunServerActivate() {
-        return stunServerActivate;
-    }
-
-    public void setStunServerActivate(boolean stunServerActivate) {
-        this.stunServerActivate = stunServerActivate;
-    }
-
-    public String getStunServerIp() {
-        return stunServerIp;
-    }
-
-    public void setStunServerIp(String stunServerIp) {
-        this.stunServerIp = stunServerIp;
-    }
-
-    public String getStunServerPort() {
-        return stunServerPort;
-    }
-
-    public void setStunServerPort(String stunServerPort) {
-        this.stunServerPort = stunServerPort;
-    }
-
-    public int getScaleInOut() {
-        return scaleInOut;
-    }
-
-    public void setScaleInOut(int scaleInOut) {
-        this.scaleInOut = scaleInOut;
-    }
-
-    public double getScale_out_threshold() {
-        return scale_out_threshold;
-    }
-
-    public void setScale_out_threshold(double scale_out_threshold) {
-        this.scale_out_threshold = scale_out_threshold;
-    }
-
-    public boolean isCdnConnector() {
-        return cdnConnector;
-    }
-
-    public void setCdnConnector(boolean cdnConnector) {
-        this.cdnConnector = cdnConnector;
-    }
-
-    @Override
-    public String toString() {
-        return "Application{" +
-                "id='" + id + '\'' +
-                ", hb_version=" + hb_version +
-                ", description='" + description + '\'' +
-                ", provider='" + provider + '\'' +
-                ", requirements=" + requirements +
-                ", gitURL='" + gitURL + '\'' +
-                ", name='" + name + '\'' +
-                ", shared=" + shared +
-                ", ports=" + ports +
-                ", flavor=" + flavor +
-                ", replicasNumber=" + replicasNumber +
-                ", secretName='" + secretName + '\'' +
-                ", qualityOfService=" + qualityOfService +
-                ", cloudRepository=" + cloudRepository +
-                ", cdnConnector=" + cdnConnector +
-                ", turnServerActivate=" + turnServerActivate +
-                ", turnServerUrl='" + turnServerUrl + '\'' +
-                ", turnServerUsername='" + turnServerUsername + '\'' +
-                ", turnServerPassword='" + turnServerPassword + '\'' +
-                ", stunServerActivate=" + stunServerActivate +
-                ", stunServerIp='" + stunServerIp + '\'' +
-                ", stunServerPort='" + stunServerPort + '\'' +
-                ", scaleInOut=" + scaleInOut +
-                ", scale_out_threshold=" + scale_out_threshold +
-                '}';
-    }
+  public String getProvider() {
+    return provider;
+  }
+
+  public void setProvider(String provider) {
+    this.provider = provider;
+  }
+
+  public Map<String, String> getRequirements() {
+    return requirements;
+  }
+
+  public void setRequirements(Map<String, String> requirements) {
+    this.requirements = requirements;
+  }
+
+  public boolean isShared() {
+    return shared;
+  }
+
+  public void setShared(boolean shared) {
+    this.shared = shared;
+  }
+
+  public String getGitURL() {
+    return gitURL;
+  }
+
+  public void setGitURL(String gitURL) {
+    this.gitURL = gitURL;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Set<Port> getPorts() {
+    return ports;
+  }
+
+  public void setPorts(Set<Port> ports) {
+    this.ports = ports;
+  }
+
+  public Flavor getFlavor() {
+    return flavor;
+  }
+
+  public void setFlavor(Flavor flavor) {
+    this.flavor = flavor;
+  }
+
+  public int getReplicasNumber() {
+    return replicasNumber;
+  }
+
+  public void setReplicasNumber(int replicasNumber) {
+    this.replicasNumber = replicasNumber;
+  }
+
+  public String getSecretName() {
+    return secretName;
+  }
+
+  public void setSecretName(String secretName) {
+    this.secretName = secretName;
+  }
+
+  public QoS getQualityOfService() {
+    return qualityOfService;
+  }
+
+  public void setQualityOfService(QoS qualityOfService) {
+    this.qualityOfService = qualityOfService;
+  }
+
+  public boolean isCloudRepository() {
+    return cloudRepository;
+  }
+
+  public void setCloudRepository(boolean cloudRepository) {
+    this.cloudRepository = cloudRepository;
+  }
+
+  public boolean isTurnServerActivate() {
+    return turnServerActivate;
+  }
+
+  public void setTurnServerActivate(boolean turnServerActivate) {
+    this.turnServerActivate = turnServerActivate;
+  }
+
+  public String getTurnServerUrl() {
+    return turnServerUrl;
+  }
+
+  public void setTurnServerUrl(String turnServerUrl) {
+    this.turnServerUrl = turnServerUrl;
+  }
+
+  public String getTurnServerUsername() {
+    return turnServerUsername;
+  }
+
+  public void setTurnServerUsername(String turnServerUsername) {
+    this.turnServerUsername = turnServerUsername;
+  }
+
+  public String getTurnServerPassword() {
+    return turnServerPassword;
+  }
+
+  public void setTurnServerPassword(String turnServerPassword) {
+    this.turnServerPassword = turnServerPassword;
+  }
+
+  public boolean isStunServerActivate() {
+    return stunServerActivate;
+  }
+
+  public void setStunServerActivate(boolean stunServerActivate) {
+    this.stunServerActivate = stunServerActivate;
+  }
+
+  public String getStunServerIp() {
+    return stunServerIp;
+  }
+
+  public void setStunServerIp(String stunServerIp) {
+    this.stunServerIp = stunServerIp;
+  }
+
+  public String getStunServerPort() {
+    return stunServerPort;
+  }
+
+  public void setStunServerPort(String stunServerPort) {
+    this.stunServerPort = stunServerPort;
+  }
+
+  public int getNumberOfInstances() {
+    return numberOfInstances;
+  }
+
+  public void setNumberOfInstances(int numberOfInstances) {
+    this.numberOfInstances = numberOfInstances;
+  }
+
+  public int getScaleOutLimit() {
+    return scaleOutLimit;
+  }
+
+  public void setScaleOutLimit(int scaleOutLimit) {
+    this.scaleOutLimit = scaleOutLimit;
+  }
+
+  public double getScaleOutThreshold() {
+    return scaleOutThreshold;
+  }
+
+  public void setScaleOutThreshold(double scaleOutThreshold) {
+    this.scaleOutThreshold = scaleOutThreshold;
+  }
+
+  public List<SupportingService> getServices() {
+    return services;
+  }
+
+  public void setServices(List<SupportingService> services) {
+    this.services = services;
+  }
+
+  public boolean isCdnConnector() {
+    return cdnConnector;
+  }
+
+  public void setCdnConnector(boolean cdnConnector) {
+    this.cdnConnector = cdnConnector;
+  }
+
+  @Override
+  public String toString() {
+    return "Application{"
+        + "id='"
+        + id
+        + '\''
+        + ", hb_version="
+        + hb_version
+        + ", description='"
+        + description
+        + '\''
+        + ", provider='"
+        + provider
+        + '\''
+        + ", requirements="
+        + requirements
+        + ", gitURL='"
+        + gitURL
+        + '\''
+        + ", name='"
+        + name
+        + '\''
+        + ", shared="
+        + shared
+        + ", ports="
+        + ports
+        + ", flavor="
+        + flavor
+        + ", replicasNumber="
+        + replicasNumber
+        + ", secretName='"
+        + secretName
+        + '\''
+        + ", qualityOfService="
+        + qualityOfService
+        + ", cloudRepository="
+        + cloudRepository
+        + ", cdnConnector="
+        + cdnConnector
+        + ", turnServerActivate="
+        + turnServerActivate
+        + ", turnServerUrl='"
+        + turnServerUrl
+        + '\''
+        + ", turnServerUsername='"
+        + turnServerUsername
+        + '\''
+        + ", turnServerPassword='"
+        + turnServerPassword
+        + '\''
+        + ", stunServerActivate="
+        + stunServerActivate
+        + ", stunServerIp='"
+        + stunServerIp
+        + '\''
+        + ", stunServerPort='"
+        + stunServerPort
+        + '\''
+        + ", numberOfInstances="
+        + numberOfInstances
+        + ", scaleOutLimit="
+        + scaleOutLimit
+        + ", scaleOutThreshold="
+        + scaleOutThreshold
+        + ", services="
+        + services
+        + '}';
+  }
 }
-
