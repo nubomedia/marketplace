@@ -29,7 +29,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class Starter {
-    public static void main(String[] args) {
-        SpringApplication.run(Marketplace.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(Marketplace.class, args);
+  }
 }

@@ -24,5 +24,4 @@ package org.nubomedia.marketplace.repository;
 /**
  * Created by mpa on 17.05.16.
  */
-public interface ApplicationRepositoryCustom {
-}
+public interface ApplicationRepositoryCustom {}

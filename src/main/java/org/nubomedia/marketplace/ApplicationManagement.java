@@ -41,65 +41,64 @@ import java.util.Set;
 @Scope
 public class ApplicationManagement {
 
-    protected Logger log = LoggerFactory.getLogger(this.getClass());
+  protected Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    private ApplicationRepository applicationRepository;
+  @Autowired private ApplicationRepository applicationRepository;
 
-    public Application add(Application application) {
-        log.debug("Adding new Application: " + application);
-        application = applicationRepository.save(application);
-        log.info("Added new Application: " + application);
-        return application;
+  public Application add(Application application) {
+    log.debug("Adding new Application: " + application);
+    application = applicationRepository.save(application);
+    log.info("Added new Application: " + application);
+    return application;
+  }
+
+  public void delete(String id) throws NotFoundException {
+    log.debug("Deleting Application: " + id);
+    Application application = applicationRepository.findOne(id);
+    if (application == null) {
+      throw new NotFoundException("Not found Application with ID: " + id);
     }
+    applicationRepository.delete(id);
+    log.info("Deleted Application: " + id);
+  }
 
-    public void delete(String id) throws NotFoundException {
-        log.debug("Deleting Application: " + id);
-        Application application = applicationRepository.findOne(id);
-        if (application == null) {
-            throw new NotFoundException("Not found Application with ID: " + id);
-        }
-        applicationRepository.delete(id);
-        log.info("Deleted Application: " + id);
+  public Application get(String id) throws NotFoundException {
+    log.debug("Getting Application: " + id);
+    Application application = applicationRepository.findOne(id);
+    if (application == null) {
+      throw new NotFoundException("Not found Application with ID: " + id);
     }
+    log.info("Got Application: " + application);
+    return application;
+  }
 
-    public Application get(String id) throws NotFoundException {
-        log.debug("Getting Application: " + id);
-        Application application = applicationRepository.findOne(id);
-        if (application == null) {
-            throw new NotFoundException("Not found Application with ID: " + id);
-        }
-        log.info("Got Application: " + application);
-        return application;
-    }
+  public Set<Application> get() {
+    log.debug("Listing Applications...");
+    Iterable<Application> application = applicationRepository.findAll();
+    log.info("Listed Applications: " + application);
+    return fromIterbaleToSet(application);
+  }
 
-    public Set<Application> get() {
-        log.debug("Listing Applications...");
-        Iterable<Application> application = applicationRepository.findAll();
-        log.info("Listed Applications: " + application);
-        return fromIterbaleToSet(application);
+  public Application update(String id, Application application) throws NotFoundException {
+    log.debug("Updating Application: " + id);
+    Application applicationToUpdate = applicationRepository.findOne(id);
+    if (applicationToUpdate == null) {
+      throw new NotFoundException("Not found Application with ID: " + id);
     }
+    application.setId(applicationToUpdate.getId());
+    application.setHb_version(applicationToUpdate.getHb_version());
+    applicationToUpdate = application;
+    applicationToUpdate = applicationRepository.save(applicationToUpdate);
+    log.info("Updated Application: " + applicationToUpdate);
+    return applicationToUpdate;
+  }
 
-    public Application update(String id, Application application) throws NotFoundException {
-        log.debug("Updating Application: " + id);
-        Application applicationToUpdate = applicationRepository.findOne(id);
-        if (applicationToUpdate == null) {
-            throw new NotFoundException("Not found Application with ID: " + id);
-        }
-        application.setId(applicationToUpdate.getId());
-        application.setHb_version(applicationToUpdate.getHb_version());
-        applicationToUpdate = application;
-        applicationToUpdate = applicationRepository.save(applicationToUpdate);
-        log.info("Updated Application: " + applicationToUpdate);
-        return applicationToUpdate;
+  private Set fromIterbaleToSet(Iterable iterable) {
+    Set set = new HashSet();
+    Iterator iterator = iterable.iterator();
+    while (iterator.hasNext()) {
+      set.add(iterator.next());
     }
-
-    private Set fromIterbaleToSet(Iterable iterable) {
-        Set set = new HashSet();
-        Iterator iterator = iterable.iterator();
-        while (iterator.hasNext()) {
-            set.add(iterator.next());
-        }
-        return set;
-    }
+    return set;
+  }
 }

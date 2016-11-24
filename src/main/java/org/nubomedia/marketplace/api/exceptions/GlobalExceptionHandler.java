@@ -37,29 +37,28 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-
 /**
  * Created by gca on 27/08/15.
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    private Logger log = LoggerFactory.getLogger(this.getClass());
+  private Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @ExceptionHandler({NotFoundException.class})
-    @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    protected ResponseEntity<Object> handleNotFoundException(HttpServletRequest req, Exception e) {
-        log.error("Exception with message " + e.getMessage() + " was thrown");
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        Map body = new HashMap<>();
-        body.put("error", "Not Found");
-        body.put("exception", e.getClass().toString());
-        body.put("message", e.getMessage());
-        body.put("path", req.getRequestURI());
-        body.put("status", HttpStatus.NOT_FOUND.value());
-        body.put("timestamp", new Date().getTime());
-        ResponseEntity responseEntity = new ResponseEntity(body, headers, HttpStatus.NOT_FOUND);
-        return responseEntity;
-    }
+  @ExceptionHandler({NotFoundException.class})
+  @ResponseStatus(value = HttpStatus.NOT_FOUND)
+  protected ResponseEntity<Object> handleNotFoundException(HttpServletRequest req, Exception e) {
+    log.error("Exception with message " + e.getMessage() + " was thrown");
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    Map body = new HashMap<>();
+    body.put("error", "Not Found");
+    body.put("exception", e.getClass().toString());
+    body.put("message", e.getMessage());
+    body.put("path", req.getRequestURI());
+    body.put("status", HttpStatus.NOT_FOUND.value());
+    body.put("timestamp", new Date().getTime());
+    ResponseEntity responseEntity = new ResponseEntity(body, headers, HttpStatus.NOT_FOUND);
+    return responseEntity;
+  }
 }

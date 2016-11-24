@@ -43,9 +43,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 //@ContextConfiguration
 public class Marketplace {
 
-    protected Logger log = LoggerFactory.getLogger(this.getClass());
+  protected Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    private ApplicationManagement applicationManagement;
-
+  @Autowired private ApplicationManagement applicationManagement;
 }

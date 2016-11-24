@@ -29,5 +29,5 @@ import org.springframework.stereotype.Repository;
  * Created by mpa on 17.05.16.
  */
 //public interface ApplicationRepository extends CrudRepository<Application, String> {
-public interface ApplicationRepository extends CrudRepository<Application, String>, ApplicationRepositoryCustom {
-}
+public interface ApplicationRepository
+    extends CrudRepository<Application, String>, ApplicationRepositoryCustom {}
