@@ -26,13 +26,39 @@
     "qualityOfService":null,
     "cloudRepository":false,
     "cdnConnector":false,
-    "scaleInOut":3,
-    "scale_out_threshold":150,
+    "scaleOutLimit": 0,
+    "scaleOutThreshold": 150,
     "turnServerActivate":false,
     "turnServerUrl":null,
     "turnServerUsername":null,
     "turnServerPassword":null,
     "stunServerActivate":false,
     "stunServerIp":null,
-    "stunServerPort":null
+    "stunServerPort":null,
+    "services": [{
+        "name": "mysql",
+        "dockerURL": "registry.access.redhat.com/openshift3/mysql-55-rhel7",
+        "replicasNumber": 1,
+        "ports": [{
+            "port": 3306,
+            "targetPort": 3306,
+            "protocol": "TCP"
+        }
+        ],
+        "envVars": [
+            {
+                "name": "MYSQL_USER",
+                "value": "test"
+            },
+            {
+                "name": "MYSQL_PASSWORD",
+                "value": "1234"
+            },
+            {
+                "name": "MYSQL_DATABASE",
+                "value": "nubo"
+            }
+        ]
+
+    }]
 }
