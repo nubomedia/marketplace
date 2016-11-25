@@ -21,6 +21,7 @@
 
 package org.nubomedia.marketplace.catalogue;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.nubomedia.marketplace.catalogue.utils.IdGenerator;
 
 import javax.persistence.Entity;
@@ -32,7 +33,7 @@ import javax.persistence.PrePersist;
  */
 @Entity
 public class EnvironmentVariable {
-  @Id private String id;
+  @JsonIgnore @Id private String id;
   private String name;
   private String value;
 

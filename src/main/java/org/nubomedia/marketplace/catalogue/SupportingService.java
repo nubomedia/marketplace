@@ -21,6 +21,7 @@
 
 package org.nubomedia.marketplace.catalogue;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.nubomedia.marketplace.catalogue.utils.IdGenerator;
 
 import javax.persistence.*;
@@ -32,6 +33,7 @@ import java.util.List;
 @Entity
 public class SupportingService {
 
+  @JsonIgnore
   @Id private String id;
   private String name;
   private String osName;
