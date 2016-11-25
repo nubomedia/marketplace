@@ -33,20 +33,14 @@ import java.util.List;
 @Entity
 public class SupportingService {
 
-  @JsonIgnore
-  @Id private String id;
+  @JsonIgnore @Id private String id;
   private String name;
-  private String osName;
-  private String projectId;
   private int replicasNumber;
   private String dockerURL;
   private String route;
 
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   private List<Port> ports;
-
-  @ElementCollection(fetch = FetchType.EAGER)
-  private List<String> podList;
 
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   private List<EnvironmentVariable> envVars;
@@ -60,7 +54,6 @@ public class SupportingService {
       int replicasNumber,
       String route) {
     this.name = name;
-    this.osName = osName;
     this.dockerURL = dockerURL;
     this.route = route;
     this.ports = ports;
@@ -72,7 +65,6 @@ public class SupportingService {
     //      this.ports = ports;
     //    }
 
-    this.podList = podList;
     //    this.protocols = protocols;
     this.replicasNumber = replicasNumber;
   }
@@ -96,14 +88,6 @@ public class SupportingService {
     this.name = name;
   }
 
-  public String getOsName() {
-    return osName;
-  }
-
-  public void setOsName(String osName) {
-    this.osName = osName;
-  }
-
   public String getDockerURL() {
     return dockerURL;
   }
@@ -118,14 +102,6 @@ public class SupportingService {
 
   public void setReplicasNumber(int replicasNumber) {
     this.replicasNumber = replicasNumber;
-  }
-
-  public List<String> getPodList() {
-    return podList;
-  }
-
-  public void setPodList(List<String> podList) {
-    this.podList = podList;
   }
 
   public List<EnvironmentVariable> getEnvVars() {
@@ -152,14 +128,6 @@ public class SupportingService {
     this.route = route;
   }
 
-  public String getProjectId() {
-    return projectId;
-  }
-
-  public void setProjectId(String projectId) {
-    this.projectId = projectId;
-  }
-
   @Override
   public String toString() {
     return "SupportingService{"
@@ -168,12 +136,6 @@ public class SupportingService {
         + '\''
         + ", name='"
         + name
-        + '\''
-        + ", osName='"
-        + osName
-        + '\''
-        + ", projectId='"
-        + projectId
         + '\''
         + ", replicasNumber="
         + replicasNumber
@@ -185,8 +147,6 @@ public class SupportingService {
         + '\''
         + ", ports="
         + ports
-        + ", podList="
-        + podList
         + ", envVars="
         + envVars
         + '}';
