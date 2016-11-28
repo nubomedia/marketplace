@@ -27,7 +27,7 @@ _APT_REPOSITORY="deb http://repository.nubomedia.eu/ trusty main"
 _PROJECT_REPO="https://github.com/nubomedia/marketplace.git"
 _SCRIPT_NAME="marketplace.sh"
 #_TAG="develop"
-_TAG="tags/1.0.0"
+_TAG="tags/1.1.0"
 
 _USER="$(id -un 2>/dev/null || true)"
 
