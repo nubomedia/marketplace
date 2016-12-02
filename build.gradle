@@ -30,6 +30,7 @@ buildscript {
 }
 
 plugins {
+    id 'net.researchgate.release' version '2.1.2'
     id "nebula.os-package" version "2.2.6"
     id 'com.github.sherter.google-java-format' version '0.3.2'
 }
@@ -42,6 +43,8 @@ repositories {
 
 apply plugin: 'java'
 apply plugin: 'spring-boot'
+apply from: 'gradle/gradle/git.release.gradle'
+
 
 repositories {
     mavenCentral()
